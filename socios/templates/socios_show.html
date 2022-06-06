@@ -1,0 +1,208 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'datatables/datatables.bt5.css' %}">
+
+<div class="page-header">
+    <div class="row">
+        <div class="col">
+            <div class="page-header-title">
+                <h4></h4>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- Page body start -->
+<div class="page-body">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card" style="margin-top: 40px;">
+                <div class="card-header" style="background-color: #79aec8;">
+                    <h5 class="card-header-text" style="color: #c4dce8;">DATOS DEL ASOCIADO</h5>
+                </div>
+                <div class="card-block">
+                    <div class="view-info">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="general-info">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-xl-4">
+                                            <div class="table-responsive">
+                                            <table class="table m-0">
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">Apellido y Nombre:</th>
+                                                        <td>{{socio}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Fecha de Nacimiento:</th>
+                                                        <td>{{socio.fechanacimiento}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Domicilio:</th>
+                                                        <td>{{socio.domicilio}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Telefono:</th>
+                                                        <td>{{socio.telefono}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Contacto:</th>
+                                                        <td>{{socio.contactoa}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Contacto:</th>
+                                                        <td>{{socio.contactob}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Certificado Medico:</th>
+                                                        {% if socio.certificadomedico %}
+                                                        <td><a href="{{socio.certificadomedico.url}}" target="_blank">Ver</a> </td>
+                                                        {% else %}
+                                                        <td>-Sin Datos-</td>
+                                                        {% endif %}
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- end of table col-lg-6 -->
+                                        <div class="col-lg-12 col-xl-4">
+                                            <div class="table-responsive">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">DNI:</th>
+                                                        <td>{{socio.dni}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Email:</th>
+                                                        <td>{{socio.email}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Localidad:</th>
+                                                        <td>{{socio.localidad}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">&nbsp;</th>
+                                                        <td>&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Referencia:</th>
+                                                        <td>{{socio.referentea}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Referencia:</th>
+                                                        <td>{{socio.referenteb}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Buco-Dental:</th>
+                                                        {% if socio.bucodental %}
+                                                        <td><a href="{{socio.bucodental.url}}" target="_blank">Ver</a> </td>
+                                                        {% else %}
+                                                        <td> -Sin Datos-</td>
+                                                        {% endif %}
+                                                    </tr>
+                                                    
+                                                </tbody>
+                                            </table>
+                                            </div>
+                                        </div>
+                                        <!-- end of table col-lg-6 -->
+
+                                        <div class="col-lg-12 col-xl-4">
+                                            <div class="col" style="text-align: center;">
+                                                {% if socio.foto %}
+                                                <img src="{{socio.foto.url}}" width="200px" height="200px" alt="Foto Perfil">
+                                                {% else %}
+                                                <img src="{% static 'icon/flaticon/profile.svg' %}" width="200px" height="200px" alt="perfil">
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end of row -->
+                                </div>
+                                <!-- end of general info -->
+                            </div>
+                            <!-- end of col-lg-12 -->
+                        </div>
+                        <!-- end of row -->
+                    </div>
+                </div>
+                <!-- end of card-block -->
+            </div>
+
+            <!-- ACTIVIDADES -->
+            <div class="card" style="margin-top: 10px;">
+                <div class="card-header" style="background-color: #79aec8;">
+                    <h5 class="card-header-text" style="color: #c4dce8;">ACTIVIDADES INSCRIPTAS</h5>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-xs">
+                        <thead>
+                            <tr>
+                                <th>Actividad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                                {% for i in inscripciones %}
+                                <tr>
+                                    <td>{{ i.actividad }}</td>
+                                </tr>
+                                {% endfor %}
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- ACTIVIDADES FIN -->
+
+            <!-- CUOTAS -->
+            <div class="card" style="margin-top: 10px;">
+                <div class="card-header" style="background-color: #79aec8;">
+                    <h5 class="card-header-text" style="color: #c4dce8;">PAGOS</h5>
+                </div>
+                <div class="table-responsive" style="margin: 10px;">
+                    <table id="pagos_table" class="table table-xs">
+                        <thead>
+                            <tr>
+                                <th>Actividad</th>
+                                <th>Fecha Pago</th>
+                                <th>Comprobante</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                                {% for p in pagos %}
+                                <tr>
+                                    <td>{{p.actividad}}</td>
+                                    <td>{{p.fechapago}}</td>
+                                    <td>{{p.comprobante}}</td>
+                                </tr>
+                                {% endfor %}
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- CUOTAS FIN -->
+
+        </div>
+    </div>
+</div>
+<!-- Page body end -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="{% static 'datatables/datatables.js' %}"></script>
+<script src="{% static 'datatables/datatables.bt5.js' %}"></script>
+<script>
+    $(document).ready( function () {
+        $('#pagos_table').DataTable();
+    } );
+</script>
+{% endblock %}

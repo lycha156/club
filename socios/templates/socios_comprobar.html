@@ -1,0 +1,56 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+{% block content %}
+{% if mensaje %}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="alert alert-danger background-danger">
+            <i class="icofont icofont-exclamation-circle"></i> {{mensaje}}
+        </div>
+    </div>
+</div>
+{% endif %}
+<div class="row">
+    <div class="col-sm-12">
+        <!-- Login card start -->
+        <div class="login-card card-block auth-body">
+            <form action="{% url 'socios_estado' %}" method="POST" class="md-float-material">
+                {% csrf_token %}
+                <div class="text-center">
+                    <!-- <img class="img-fluid" src="{% static 'images/logovgg.png' %}" alt="Theme-Logo"> -->
+                </div>
+                <div class="auth-box" style="border-top: 2px solid #8cddcd; box-shadow: 0 2px 1px rgba(0,0,0,0.05); border-left: none; border-right: none; border-bottom: none; margin-bottom: 30px;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="text-center"><img width="60%" height="60%" src="{% static 'images/logovgg.png' %}" alt=""></h3>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="dni" id="dni" placeholder="DNI" autofocus>
+                        <span class="md-line"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20"><i class="icofont icofont-ui-search"></i> Buscar </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <!-- <p class="text-inverse text-left m-b-0">Thank you and enjoy our website.</p>
+                            <p class="text-inverse text-left"><b>Your Autentification Team</b></p>
+                        </div>
+                        <div class="col-md-2">
+                            <img src="{% static 'images/auth/Logo-small-bottom.png' %}" alt="small-logo.png">
+                        </div> -->
+                    </div>
+                </div>
+            </form>
+            <!-- end of form -->
+        </div>
+        <!-- Login card end -->
+    </div>
+    <!-- end of col-sm-12 -->
+</div>
+<!-- end of row -->
+{% endblock %}

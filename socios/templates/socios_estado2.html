@@ -1,0 +1,188 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+{% block content %}
+{% if mensaje %}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="alert alert-danger background-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <i class="icofont icofont-close-line-circled text-white"></i>
+            </button>
+            <i class="icofont icofont-exclamation-circle"></i> {{mensaje}}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- <div class="card">
+    <img width="50" height="300" src="{{socio.foto.url}}" class="card-img-top" alt="foto">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div> -->
+
+  <div class="row" style="background-color: #79aec8;">
+      <div class="col-4" style="margin: 10px;">
+        <img width="350px" height="auto" src="{{socio.foto.url}}" class="card-img-top" alt="foto">
+      </div>
+      <div class="col-8" style="margin: 10px;">
+        <table class="table table-striped" style="margin-left: -20px;">
+            <thead>
+                <th>Actividad</th>
+                <th>Cuotas</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>NATACION</td>
+                    <td>12/05/2025</td>
+                </tr>
+                <tr>
+                    <td>NATACION 2 VECES POR SEMANA</td>
+                    <td>12/05/2025</td>
+                </tr>
+                <tr>
+                    <td>NATACION</td>
+                    <td>12/05/2025</td>
+                </tr>
+                <tr>
+                    <td>NATACION</td>
+                    <td>12/05/2025</td>
+                </tr>
+                <tr>
+                    <td>NATACION 2 VECES POR SEMANA</td>
+                    <td>12/05/2025</td>
+                </tr>
+                <tr>
+                    <td>NATACION</td>
+                    <td>12/05/2025</td>
+                </tr>
+                <tr>
+                    <td>NATACION</td>
+                    <td>12/05/2025</td>
+                </tr>
+                <tr>
+                    <td>NATACION 2 VECES POR SEMANA</td>
+                    <td>12/05/2025</td>
+                </tr>
+                <tr>
+                    <td>NATACION</td>
+                    <td>12/05/2025</td>
+                </tr>
+                <tr>
+                    <td>NATACION</td>
+                    <td>12/05/2025</td>
+                </tr>
+                <tr>
+                    <td>NATACION 2 VECES POR SEMANA</td>
+                    <td>12/05/2025</td>
+                </tr>
+                <tr>
+                    <td>NATACION</td>
+                    <td>12/05/2025</td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+  </div>
+
+  
+<!-- <div class="card" style="border-top: none; border-radius: 15px;">
+            
+    <div class="card-body">
+        <div class="col">
+                <img class="img-thumbnail" width="100%" src="{{socio.foto.url}}" alt="foto">
+                <h2>{{socio|upper}}</h2>
+        </div>
+        <div class="col" style="padding: 15px;">
+
+            <table class="table table-striped" style="margin-left: -20px;">
+                <thead>
+                    <th>Actividad</th>
+                    <th>Cuotas</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>NATACION</td>
+                        <td>12/05/2025</td>
+                    </tr>
+                    <tr>
+                        <td>NATACION 2 VECES POR SEMANA</td>
+                        <td>12/05/2025</td>
+                    </tr>
+                    <tr>
+                        <td>NATACION</td>
+                        <td>12/05/2025</td>
+                    </tr>
+                    <tr>
+                        <td>NATACION</td>
+                        <td>12/05/2025</td>
+                    </tr>
+                    <tr>
+                        <td>NATACION 2 VECES POR SEMANA</td>
+                        <td>12/05/2025</td>
+                    </tr>
+                    <tr>
+                        <td>NATACION</td>
+                        <td>12/05/2025</td>
+                    </tr>
+                    <tr>
+                        <td>NATACION</td>
+                        <td>12/05/2025</td>
+                    </tr>
+                    <tr>
+                        <td>NATACION 2 VECES POR SEMANA</td>
+                        <td>12/05/2025</td>
+                    </tr>
+                    <tr>
+                        <td>NATACION</td>
+                        <td>12/05/2025</td>
+                    </tr>
+                    <tr>
+                        <td>NATACION</td>
+                        <td>12/05/2025</td>
+                    </tr>
+                    <tr>
+                        <td>NATACION 2 VECES POR SEMANA</td>
+                        <td>12/05/2025</td>
+                    </tr>
+                    <tr>
+                        <td>NATACION</td>
+                        <td>12/05/2025</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+
+            {% for i in inscripciones %}
+
+                {% if acceso %}
+                    <div style="margin-right: 40px;" class="alert alert-success icons-alert">
+                        <p><strong>{{i.actividad}} - Habilitado!</strong></p>
+                        {% for p in pagos %}
+                            <p>{{p.fechapago}}</p>
+                        {% endfor %}
+                        
+                    </div>
+                {% else %}
+                    <div style="margin-right: 40px;" class="alert alert-danger icons-alert">
+                        <p><strong>Inhabilitado!</strong> Por favor contacte con la Administración.</p>
+                    </div>
+                {% endif %}
+
+            {% endfor %}
+            
+
+        </div>
+    </div>
+
+</div> -->
+
+<!-- end of row -->
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}
