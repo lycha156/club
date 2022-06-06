@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row justify-content-md-center">
+    <div class="col col-lg-10">
+        <div class="card" style="margin-top: 50px">
+            <div class="card-header" style="background-color: #79aec8;">
+                <h2 class="text-center" style="color: #c4dce8;">Carga de pago de socio: {{socio.nombre|upper }}, {{socio.apellido|upper }} - DNI: {{socio.dni}}</h2>
+            </div>
+            <div class="card-body border-dark ">
+                {% if inscripciones %}
+                <form action="{% url 'pagos_create_save' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="socio_id" value="{{socio.id}}">
+                    <div class="mb-3">
+                        <label for="inscripcion_id" class="form-label">Actividad</label>
+                        <select class="form-select" name="inscripcion_id" aria-label="Default select example" required>
+                            {% for i in inscripciones %}
+                            <option value="{{i.id}}">{{i.actividad}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fechapago" class="form-label">Fecha de Pago:</label>
+                        <input type="date" class="form-control" name="fechapago" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="comprobante" class="form-label">Comprobante de Pago:</label>
+                        <input type="text" class="form-control" name="comprobante" >
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-danger me-md-2" type="button" onClick="history.go(-1);">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div>
+                    
+            </form>
+            {% else %}
+                <h3 class="text-center">Este socio no posee actividades registradas</h3>
+                <INPUT TYPE="button" VALUE="Back" onClick="history.go(-1);">
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
